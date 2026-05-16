@@ -132,11 +132,11 @@ function Dashboard() {
             </button>
           </div>
           <div className="flex-1 px-4 py-6 space-y-3">
-            <button onClick={() => setIsMobileMenuOpen(false)} className="w-full px-4 py-3 text-sm font-semibold text-white rounded-xl bg-gradient-brand shadow-md flex items-center gap-3 hover:-translate-y-0.5 transition-all">
-              <Calendar className="w-5 h-5" /> All Tasks
+            <button onClick={() => setIsMobileMenuOpen(false)} className="w-full px-4 py-3 text-sm font-extrabold text-gray-900 rounded-xl bg-white shadow-[0_8px_30px_rgb(0,0,0,0.12)] flex items-center gap-3 hover:-translate-y-1 transition-all border-2 border-transparent hover:border-[--color-brand-start]">
+              <Calendar className="w-5 h-5 text-[--color-brand-start]" /> All Tasks
             </button>
-            <Link to="/history" onClick={() => setIsMobileMenuOpen(false)} className="px-4 py-3 text-sm font-medium text-gray-700 rounded-xl hover:bg-gray-100/50 dark:text-gray-300 dark:hover:bg-gray-800/50 flex items-center gap-3 transition-colors">
-              <Clock className="w-5 h-5" /> Activity History
+            <Link to="/history" onClick={() => setIsMobileMenuOpen(false)} className="px-4 py-3 text-sm font-bold text-gray-700 rounded-xl hover:bg-white/50 flex items-center gap-3 transition-colors">
+              <Clock className="w-5 h-5 text-gray-500" /> Activity History
             </Link>
           </div>
           <div className="p-4 border-t border-gray-200/50 dark:border-gray-700/50 space-y-2">
@@ -176,9 +176,9 @@ function Dashboard() {
                 setTaskToEdit(null);
                 setIsModalOpen(true);
               }}
-              className="flex items-center gap-2 btn-primary animate-fade-in-up" style={{ animationDelay: '200ms' }}
+              className="flex items-center gap-2 btn-primary animate-fade-in-up group" style={{ animationDelay: '200ms' }}
             >
-              <Plus className="w-5 h-5" /> New Task
+              <Plus className="w-5 h-5 text-[--color-brand-start] group-hover:scale-110 transition-transform" /> <span className="text-gradient">New Task</span>
             </button>
           </div>
 

@@ -3,6 +3,8 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
+  --font-sans: 'Poppins', sans-serif;
+  
   --color-primary-50: #eff6ff;
   --color-primary-100: #dbeafe;
   --color-primary-500: #3b82f6;
@@ -38,7 +40,7 @@
   }
 
   .btn-primary {
-    @apply bg-gradient-to-r from-[--color-brand-start] to-[--color-brand-end] text-white font-semibold rounded-lg px-4 py-2 shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 active:scale-95 transition-all duration-200;
+    @apply bg-white text-gray-900 font-extrabold rounded-xl px-5 py-2.5 shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.2)] hover:-translate-y-1 active:translate-y-0 active:scale-95 transition-all duration-300 border-2 border-transparent hover:border-[--color-brand-start];
   }
 
   .animate-fade-in-up {
