@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
 import { getHistory, resetHistoryState } from '../redux/slices/historySlice';
-import { LogOut, Calendar, Clock, ArrowLeft, Menu } from 'lucide-react';
+import { LogOut, Calendar, Clock, ArrowLeft, Menu, X } from 'lucide-react';
 import { logout, reset as resetAuth } from '../redux/slices/authSlice';
 
 export default function History() {
@@ -35,16 +35,20 @@ export default function History() {
       {/* Sidebar */}
       <aside className={`fixed inset-y-0 left-0 z-40 w-64 bg-white border-r border-gray-200 dark:bg-gray-800 dark:border-gray-700 transform transition-transform duration-200 ease-in-out md:relative md:translate-x-0 flex flex-col ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
         <div className="flex flex-col h-full">
-          <div className="flex items-center justify-center h-16 border-b border-gray-200 dark:border-gray-700">
+          <div className="flex items-center justify-between px-4 h-16 border-b border-gray-200 dark:border-gray-700">
+            <div className="w-8 md:hidden"></div> {/* Spacer for centering */}
             <h1 className="text-xl font-bold text-primary-600 dark:text-primary-400">TaskFlow</h1>
+            <button onClick={() => setIsMobileMenuOpen(false)} className="p-2 -mr-2 text-gray-600 rounded-lg hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800 md:hidden">
+              <X className="w-6 h-6" />
+            </button>
           </div>
           <div className="flex-1 px-4 py-6 space-y-4">
-            <Link to="/" className="px-3 py-2 text-sm font-medium text-gray-600 rounded-lg hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 flex items-center gap-3">
+            <Link to="/" onClick={() => setIsMobileMenuOpen(false)} className="px-3 py-2 text-sm font-medium text-gray-600 rounded-lg hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 flex items-center gap-3">
               <Calendar className="w-5 h-5" /> All Tasks
             </Link>
-            <div className="px-3 py-2 text-sm font-medium text-gray-900 rounded-lg bg-gray-100 dark:bg-gray-700 dark:text-white flex items-center gap-3">
+            <button onClick={() => setIsMobileMenuOpen(false)} className="w-full px-3 py-2 text-sm font-medium text-gray-900 rounded-lg bg-gray-100 dark:bg-gray-700 dark:text-white flex items-center gap-3">
               <Clock className="w-5 h-5" /> Activity History
-            </div>
+            </button>
           </div>
           <div className="p-4 border-t border-gray-200 dark:border-gray-700">
             <button
