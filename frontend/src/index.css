@@ -39,8 +39,13 @@
     @apply bg-gradient-to-r from-[--color-brand-start] to-[--color-brand-end];
   }
 
-  .btn-primary {
-    @apply bg-white text-gray-900 font-extrabold rounded-xl px-5 py-2.5 shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.2)] hover:-translate-y-1 active:translate-y-0 active:scale-95 transition-all duration-300 border-2 border-transparent hover:border-[--color-brand-start];
+  .btn-vibrant {
+    @apply text-white font-extrabold rounded-xl px-5 py-2.5 shadow-lg hover:shadow-xl hover:-translate-y-1 active:translate-y-0 active:scale-95 transition-all duration-300 border-2 border-transparent;
+    background: linear-gradient(to right, var(--color-brand-start), var(--color-brand-end));
+  }
+
+  .btn-white {
+    @apply bg-white text-[#ec4899] font-extrabold rounded-xl px-5 py-2.5 shadow-lg hover:shadow-xl hover:-translate-y-1 active:translate-y-0 active:scale-95 transition-all duration-300 border-2 border-transparent hover:border-[#ec4899];
   }
 
   .animate-fade-in-up {

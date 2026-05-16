@@ -176,9 +176,9 @@ function Dashboard() {
                 setTaskToEdit(null);
                 setIsModalOpen(true);
               }}
-              className="flex items-center gap-2 btn-primary animate-fade-in-up group" style={{ animationDelay: '200ms' }}
+              className="flex items-center gap-2 btn-white animate-fade-in-up group" style={{ animationDelay: '200ms' }}
             >
-              <Plus className="w-5 h-5 text-[--color-brand-start] group-hover:scale-110 transition-transform" /> <span className="text-gradient">New Task</span>
+              <Plus className="w-5 h-5 group-hover:scale-110 transition-transform" /> <span>New Task</span>
             </button>
           </div>
 
