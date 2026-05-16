@@ -57,6 +57,10 @@ function Dashboard() {
   useEffect(() => {
     const socket = io(import.meta.env.PROD ? 'https://task-manager-backend-61um.onrender.com' : 'http://localhost:5000');
     
+    if (user && user._id) {
+       socket.emit('joinRoom', user._id);
+    }
+    
     socket.on('taskAdded', (task) => {
        dispatch(taskAdded(task));
        toast.success('New task added!');

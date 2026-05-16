@@ -29,7 +29,7 @@ const createTask = async (req, res, next) => {
     
     // Emit socket event
     const io = req.app.get('io');
-    io.emit('taskAdded', createdTask);
+    io.to(req.user._id.toString()).emit('taskAdded', createdTask);
     
     res.status(201).json(createdTask);
   } catch (error) {
@@ -59,7 +59,9 @@ const getTasks = async (req, res, next) => {
     const statusFilter = req.query.status ? { status: req.query.status } : {};
     const priorityFilter = req.query.priority ? { priority: req.query.priority } : {};
 
-    const count = await Task.countDocuments({ ...keyword, ...statusFilter, ...priorityFilter });
+    const query = { createdBy: req.user._id, ...keyword, ...statusFilter, ...priorityFilter };
+
+    const count = await Task.countDocuments(query);
     
     // Default sorting (e.g., by createdAt desc)
     const sortObj = {};
@@ -70,7 +72,7 @@ const getTasks = async (req, res, next) => {
         sortObj.createdAt = -1;
     }
 
-    const tasks = await Task.find({ ...keyword, ...statusFilter, ...priorityFilter })
+    const tasks = await Task.find(query)
       .populate('assignedTo', 'name email')
       .populate('createdBy', 'name email')
       .sort(sortObj)
@@ -131,7 +133,7 @@ const updateTask = async (req, res, next) => {
       });
       
       const io = req.app.get('io');
-      io.emit('taskUpdated', updatedTask);
+      io.to(req.user._id.toString()).emit('taskUpdated', updatedTask);
       
       res.json(updatedTask);
     } else {
@@ -161,7 +163,7 @@ const deleteTask = async (req, res, next) => {
       });
       
       const io = req.app.get('io');
-      io.emit('taskDeleted', req.params.id);
+      io.to(req.user._id.toString()).emit('taskDeleted', req.params.id);
       
       res.json({ message: 'Task removed' });
     } else {
