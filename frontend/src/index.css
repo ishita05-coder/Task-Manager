@@ -1,11 +1,86 @@
 @import "tailwindcss";
 
+@theme {
+  --color-primary-50: #eff6ff;
+  --color-primary-100: #dbeafe;
+  --color-primary-500: #3b82f6;
+  --color-primary-600: #2563eb;
+  --color-primary-700: #1d4ed8;
+  
+  /* Brand Gradients */
+  --color-brand-start: #8b5cf6; /* Violet */
+  --color-brand-end: #ec4899;   /* Pink */
+}
+
 @layer base {
   body {
-    @apply bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-50 transition-colors duration-200;
+    @apply antialiased text-gray-900 bg-gray-50;
+  }
+}
+
+@layer utilities {
+  .glass-card {
+    @apply bg-white/70 backdrop-blur-lg border border-white/40 shadow-xl;
   }
   
-  button {
-    @apply cursor-pointer;
+  .glass-card-dark {
+    @apply dark:bg-gray-900/70 dark:backdrop-blur-lg dark:border-gray-700/50 dark:shadow-xl;
   }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[--color-brand-start] to-[--color-brand-end];
+  }
+
+  .bg-gradient-brand {
+    @apply bg-gradient-to-r from-[--color-brand-start] to-[--color-brand-end];
+  }
+
+  .btn-primary {
+    @apply bg-gradient-brand text-white font-semibold rounded-lg px-4 py-2 shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 active:scale-95 transition-all duration-200;
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .mesh-bg {
+    background-color: #f3f4f6;
+    background-image: 
+      radial-gradient(at 40% 20%, hsla(280,100%,74%,0.4) 0px, transparent 50%),
+      radial-gradient(at 80% 0%, hsla(189,100%,56%,0.4) 0px, transparent 50%),
+      radial-gradient(at 0% 50%, hsla(355,100%,93%,0.4) 0px, transparent 50%);
+  }
+  
+  .mesh-bg-dark {
+    background-color: #111827;
+    background-image: 
+      radial-gradient(at 40% 20%, hsla(280,100%,74%,0.15) 0px, transparent 50%),
+      radial-gradient(at 80% 0%, hsla(189,100%,56%,0.15) 0px, transparent 50%),
+      radial-gradient(at 0% 50%, hsla(355,100%,93%,0.1) 0px, transparent 50%);
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+button {
+  cursor: pointer !important;
 }

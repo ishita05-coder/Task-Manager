@@ -45,9 +45,13 @@ function Login() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen">
-      <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-xl shadow-lg dark:bg-gray-800">
-        <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-white">Sign In</h2>
+    <div className="flex items-center justify-center min-h-screen mesh-bg mesh-bg-dark">
+      <div className="w-full max-w-md p-8 glass-card glass-card-dark rounded-2xl animate-fade-in-up">
+        <div className="text-center mb-8">
+          <h1 className="text-4xl font-extrabold text-gradient mb-2 animate-float">TaskFlow</h1>
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Welcome Back</h2>
+          <p className="text-gray-600 dark:text-gray-400 mt-2">Sign in to manage your tasks</p>
+        </div>
         <form className="space-y-4" onSubmit={onSubmit}>
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Email Address</label>
@@ -73,15 +77,15 @@ function Login() {
           </div>
           <button
             type="submit"
+            className="w-full btn-primary py-3 flex justify-center items-center"
             disabled={isLoading}
-            className="w-full px-4 py-2 text-white bg-primary-600 rounded-lg hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 disabled:opacity-50"
           >
-            {isLoading ? 'Signing In...' : 'Sign In'}
+            {isLoading ? 'Signing in...' : 'Sign in'}
           </button>
         </form>
-        <p className="text-sm text-center text-gray-600 dark:text-gray-400">
+        <p className="mt-6 text-sm text-center text-gray-600 dark:text-gray-400">
           Don't have an account?{' '}
-          <Link to="/register" className="font-medium text-primary-600 hover:text-primary-500">
+          <Link to="/register" className="font-medium text-[--color-brand-start] hover:text-[--color-brand-end] transition-colors">
             Sign up
           </Link>
         </p>
