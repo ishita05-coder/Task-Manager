@@ -1,4 +1,6 @@
 const User = require('../models/User');
+const Task = require('../models/Task');
+const History = require('../models/History');
 const generateToken = require('../utils/generateToken');
 
 // @desc    Register a new user
@@ -83,8 +85,34 @@ const getUserProfile = async (req, res, next) => {
   }
 };
 
+// @desc    Delete user account and all associated data
+// @route   DELETE /api/auth/me
+// @access  Private
+const deleteUserAccount = async (req, res, next) => {
+  try {
+    const user = await User.findById(req.user._id);
+
+    if (user) {
+      // Delete all tasks created by this user
+      await Task.deleteMany({ createdBy: req.user._id });
+      // Delete all history logs created by this user
+      await History.deleteMany({ user: req.user._id });
+      // Delete the user record
+      await user.deleteOne();
+
+      res.json({ message: 'User account and all associated data deleted successfully' });
+    } else {
+      res.status(404);
+      throw new Error('User not found');
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   registerUser,
   loginUser,
   getUserProfile,
+  deleteUserAccount,
 };

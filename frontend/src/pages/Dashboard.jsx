@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
-import { logout, reset as resetAuth } from '../redux/slices/authSlice';
+import { logout, reset as resetAuth, deleteAccount } from '../redux/slices/authSlice';
 import { getTasks, resetTaskState, taskAdded, taskUpdated, taskDeleted, deleteTask } from '../redux/slices/taskSlice';
-import { LogOut, Plus, Search, Calendar, AlertCircle, CheckCircle2, Clock, Trash2, Menu, X } from 'lucide-react';
+import { LogOut, Plus, Search, Calendar, AlertCircle, CheckCircle2, Clock, Trash2, Menu, X, UserX } from 'lucide-react';
 import toast from 'react-hot-toast';
 import io from 'socket.io-client';
 import TaskModal from '../components/TaskModal';
@@ -85,6 +85,14 @@ function Dashboard() {
     navigate('/login');
   };
 
+  const handleDeleteAccount = () => {
+    if (window.confirm("WARNING: Are you sure you want to permanently delete your account? All your tasks and history will be lost. This cannot be undone.")) {
+      dispatch(deleteAccount());
+      dispatch(resetAuth());
+      navigate('/login');
+    }
+  };
+
   const getStatusColor = (status) => {
     switch (status) {
       case 'Completed':
@@ -131,12 +139,18 @@ function Dashboard() {
               <Clock className="w-5 h-5" /> Activity History
             </Link>
           </div>
-          <div className="p-4 border-t border-gray-200 dark:border-gray-700">
+          <div className="p-4 border-t border-gray-200 dark:border-gray-700 space-y-2">
             <button
               onClick={onLogout}
-              className="flex items-center gap-2 text-gray-600 hover:text-red-600 dark:text-gray-400 dark:hover:text-red-400 transition-colors"
+              className="flex items-center gap-2 px-3 py-2 text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors w-full text-left font-medium"
             >
               <LogOut className="w-5 h-5" /> Logout
+            </button>
+            <button
+              onClick={handleDeleteAccount}
+              className="flex items-center gap-2 px-3 py-2 text-red-600 hover:text-red-700 hover:bg-red-50 dark:hover:bg-red-900/30 rounded-lg transition-colors w-full text-left font-medium"
+            >
+              <UserX className="w-5 h-5" /> Delete Account
             </button>
           </div>
         </div>
