@@ -54,7 +54,7 @@ function Dashboard() {
   }, [user, navigate, isError, message, dispatch]);
 
   useEffect(() => {
-    const socket = io('http://localhost:5000');
+    const socket = io(import.meta.env.PROD ? 'https://task-manager-backend-61um.onrender.com' : 'http://localhost:5000');
     
     socket.on('taskAdded', (task) => {
        dispatch(taskAdded(task));

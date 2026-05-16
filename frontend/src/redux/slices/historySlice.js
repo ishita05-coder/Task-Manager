@@ -9,7 +9,9 @@ const initialState = {
   message: '',
 };
 
-const API_URL = 'http://localhost:5000/api/history/';
+const API_URL = import.meta.env.PROD 
+  ? 'https://task-manager-backend-61um.onrender.com/api/history/' 
+  : 'http://localhost:5000/api/history/';
 
 export const getHistory = createAsyncThunk('history/getAll', async (_, thunkAPI) => {
   try {

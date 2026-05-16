@@ -11,7 +11,9 @@ const initialState = {
   message: '',
 };
 
-const API_URL = 'http://localhost:5000/api/auth/';
+const API_URL = import.meta.env.PROD 
+  ? 'https://task-manager-backend-61um.onrender.com/api/auth/' 
+  : 'http://localhost:5000/api/auth/';
 
 export const register = createAsyncThunk('auth/register', async (userData, thunkAPI) => {
   try {

@@ -13,7 +13,9 @@ const initialState = {
   total: 0,
 };
 
-const API_URL = 'http://localhost:5000/api/tasks/';
+const API_URL = import.meta.env.PROD 
+  ? 'https://task-manager-backend-61um.onrender.com/api/tasks/' 
+  : 'http://localhost:5000/api/tasks/';
 
 export const getTasks = createAsyncThunk('tasks/getAll', async (queryStr = '', thunkAPI) => {
   try {
