@@ -45,7 +45,7 @@
   }
 
   .btn-white {
-    @apply bg-white text-[#ec4899] font-extrabold rounded-xl px-5 py-2.5 shadow-lg hover:shadow-xl hover:-translate-y-1 active:translate-y-0 active:scale-95 transition-all duration-300 border-2 border-transparent hover:border-[#ec4899];
+    @apply bg-white text-gray-900 font-extrabold rounded-xl px-5 py-2.5 shadow-lg hover:shadow-xl hover:-translate-y-1 active:translate-y-0 active:scale-95 transition-all duration-300 border-2 border-transparent hover:border-[--color-brand-start];
   }
 
   .animate-fade-in-up {
