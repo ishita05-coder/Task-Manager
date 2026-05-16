@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
 import { logout, reset as resetAuth } from '../redux/slices/authSlice';
 import { getTasks, resetTaskState, taskAdded, taskUpdated, taskDeleted, deleteTask } from '../redux/slices/taskSlice';
-import { LogOut, Plus, Search, Calendar, AlertCircle, CheckCircle2, Clock, Trash2 } from 'lucide-react';
+import { LogOut, Plus, Search, Calendar, AlertCircle, CheckCircle2, Clock, Trash2, Menu } from 'lucide-react';
 import toast from 'react-hot-toast';
 import io from 'socket.io-client';
 import TaskModal from '../components/TaskModal';
@@ -14,6 +14,7 @@ function Dashboard() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [taskToEdit, setTaskToEdit] = useState(null);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleEditTask = (task) => {
     setTaskToEdit(task);
@@ -109,7 +110,7 @@ function Dashboard() {
   return (
     <div className="flex h-screen overflow-hidden bg-gray-50 dark:bg-gray-900">
       {/* Sidebar */}
-      <aside className="w-64 bg-white border-r border-gray-200 dark:bg-gray-800 dark:border-gray-700 hidden md:block">
+      <aside className={`fixed inset-y-0 left-0 z-40 w-64 bg-white border-r border-gray-200 dark:bg-gray-800 dark:border-gray-700 transform transition-transform duration-200 ease-in-out md:relative md:translate-x-0 flex flex-col ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
         <div className="flex flex-col h-full">
           <div className="flex items-center justify-center h-16 border-b border-gray-200 dark:border-gray-700">
             <h1 className="text-xl font-bold text-primary-600 dark:text-primary-400">TaskFlow</h1>
@@ -134,10 +135,17 @@ function Dashboard() {
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 overflow-y-auto">
-        <div className="p-8">
-          <div className="flex items-center justify-between mb-8">
+      <main className="flex-1 overflow-y-auto w-full">
+        <div className="p-4 md:p-8 max-w-6xl mx-auto">
+          {/* Header */}
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
             <div>
+              <div className="flex items-center gap-3 mb-2 md:hidden">
+                <button onClick={() => setIsMobileMenuOpen(true)} className="p-2 -ml-2 text-gray-600 rounded-lg hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800">
+                  <Menu className="w-6 h-6" />
+                </button>
+                <h1 className="text-xl font-bold text-primary-600 dark:text-primary-400">TaskFlow</h1>
+              </div>
               <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Welcome back, {user?.name}</h2>
               <p className="text-gray-600 dark:text-gray-400">Here's an overview of your tasks.</p>
             </div>
@@ -146,7 +154,7 @@ function Dashboard() {
                 setTaskToEdit(null);
                 setIsModalOpen(true);
               }}
-              className="flex items-center gap-2 px-4 py-2 text-white bg-primary-600 rounded-lg hover:bg-primary-700 shadow-sm transition-colors"
+              className="flex items-center gap-2 px-4 py-2 text-white bg-primary-600 rounded-lg hover:bg-primary-700 shadow-sm transition-colors w-fit"
             >
               <Plus className="w-5 h-5" /> New Task
             </button>
