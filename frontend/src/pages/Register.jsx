@@ -51,7 +51,7 @@ function Register() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen mesh-bg mesh-bg-dark py-12">
+    <div className="flex items-center justify-center min-h-screen vibrant-bg py-12">
       <div className="w-full max-w-md p-8 glass-card glass-card-dark rounded-2xl animate-fade-in-up">
         <div className="text-center mb-8">
           <h1 className="text-4xl font-extrabold text-gradient mb-2 animate-float">TaskFlow</h1>

@@ -120,7 +120,7 @@ function Dashboard() {
   );
 
   return (
-    <div className="flex h-screen overflow-hidden mesh-bg mesh-bg-dark">
+    <div className="flex h-screen overflow-hidden vibrant-bg">
       {/* Sidebar */}
       <aside className={`fixed inset-y-0 left-0 z-40 w-64 glass-card glass-card-dark transform transition-transform duration-300 ease-out md:relative md:translate-x-0 flex flex-col ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
         <div className="flex flex-col h-full">

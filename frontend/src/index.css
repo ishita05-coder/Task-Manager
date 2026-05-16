@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --color-primary-50: #eff6ff;
   --color-primary-100: #dbeafe;
@@ -47,20 +49,24 @@
     animation: float 6s ease-in-out infinite;
   }
   
-  .mesh-bg {
-    background-color: #f3f4f6;
-    background-image: 
-      radial-gradient(at 40% 20%, hsla(280,100%,74%,0.4) 0px, transparent 50%),
-      radial-gradient(at 80% 0%, hsla(189,100%,56%,0.4) 0px, transparent 50%),
-      radial-gradient(at 0% 50%, hsla(355,100%,93%,0.4) 0px, transparent 50%);
+  .vibrant-bg {
+    background: linear-gradient(-45deg, #ff9a9e, #fecfef, #a1c4fd, #c2e9fb);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
   }
   
-  .mesh-bg-dark {
-    background-color: #111827;
-    background-image: 
-      radial-gradient(at 40% 20%, hsla(280,100%,74%,0.15) 0px, transparent 50%),
-      radial-gradient(at 80% 0%, hsla(189,100%,56%,0.15) 0px, transparent 50%),
-      radial-gradient(at 0% 50%, hsla(355,100%,93%,0.1) 0px, transparent 50%);
+  .vibrant-bg-alt {
+    background: linear-gradient(-45deg, #84fab0, #8fd3f4, #a1c4fd, #c2e9fb);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+  }
+  
+  .glass-card {
+    @apply bg-white/70 backdrop-blur-xl border border-white/60 shadow-[0_8px_30px_rgb(0,0,0,0.12)];
+  }
+  
+  .glass-card-dark {
+    @apply dark:bg-gray-900/70 dark:backdrop-blur-xl dark:border-gray-700/50 dark:shadow-[0_8px_30px_rgb(0,0,0,0.12)];
   }
 }
 
@@ -75,10 +81,10 @@
   }
 }
 
-@keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0px); }
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 button {
