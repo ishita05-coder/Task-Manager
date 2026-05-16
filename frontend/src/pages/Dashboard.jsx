@@ -150,7 +150,7 @@ function Dashboard() {
                 </button>
                 <h1 className="text-xl font-bold text-primary-600 dark:text-primary-400">TaskFlow</h1>
               </div>
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Welcome back, {user?.name}</h2>
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Welcome, {user?.name}!</h2>
               <p className="text-gray-600 dark:text-gray-400">Here's an overview of your tasks.</p>
             </div>
             <button 
